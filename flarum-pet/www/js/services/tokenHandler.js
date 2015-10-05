@@ -1,9 +1,10 @@
-flarum.factory('TokenHandler', function() {
+flarum.factory('TokenHandler', function($http) {
   var tokenHandler = {};
   var token = "none";
 
   tokenHandler.set = function( newToken ) {
     token = newToken;
+    $http.defaults.headers.common['Authorization']= 'Token ' + token ;
   };
 
   tokenHandler.get = function() {
@@ -17,6 +18,7 @@ flarum.factory('TokenHandler', function() {
     var wrappedResource = resource;
     for (var i=0; i < actions.length; i++) {
       tokenWrapper( wrappedResource, actions[i] );
+      
     };
     // return modified copy of resource
     return wrappedResource;
@@ -25,6 +27,7 @@ flarum.factory('TokenHandler', function() {
   // wraps resource action to send request with auth token
   var tokenWrapper = function( resource, action ) {
     // copy original action
+    resource[action]['headers'] = {'Authorization': 'Token '+ tokenHandler.get()};
     resource['_' + action]  = resource[action];
     // create new action wrapping the original and sending token
     resource[action] = function( data, success, error){

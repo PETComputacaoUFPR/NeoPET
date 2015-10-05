@@ -61,11 +61,50 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
     .state('tabs', {
       url: '/tabs',
       templateUrl: 'templates/tabs.html',
+      abstract: true,
       data: {
         requireLogin: true
       }
     })
-    ;
+    
+    .state('tabs.discussions', {
+      url: '/discussions',
+      views: {
+        'discussions-tab': {
+          templateUrl: 'templates/tab-discussions.html',
+          controller: 'DiscussionsCtrl'
+        }
+      }
+    })
+    .state('tabs.discussions-details', {
+      url: '/d/:id',
+      views: {
+        'discussions-tab': {
+          templateUrl: 'templates/tab-discussion-detail.html',
+          controller: 'DiscussionDetailsCtrl'
+        }
+      }
+    })
+    
+    .state('tabs.notifications', {
+      url: '/notifications',
+      views: {
+        'notifications-tab': {
+          templateUrl: 'templates/tab-notifications.html',
+          controller: 'NotificationsCtrl'
+        }
+      }
+    })
+    
+    .state('tabs.profile', {
+      url: '/profile',
+      views: {
+        'profile-tab': {
+          templateUrl: 'templates/tab-profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   

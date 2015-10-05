@@ -13,7 +13,7 @@ flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $st
         .success(function(data, status) {
             console.log(data);
             TokenHandler.set(data.token);
-            $state.go('tabs');
+            $state.go('tabs.discussions');
             
         })
         .error(function(data, status) {
