@@ -1,20 +1,20 @@
 <ion-view title="Login">
     <ion-content padding="true" class="has-header">
         <img src="img/logo-velha.jpg" style="width: 100%; height: auto;">
-        <form>
+        <form ng-submit="login(user)">
             <h1>FÓRUM</h1>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="user.username">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
+                    <input type="password" placeholder="" ng-model="user.password">
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-stable button-block ">Log in</button>
+            <button class="button button-stable button-block ">Entrar</button>
         </form>
     </ion-content>
 </ion-view>

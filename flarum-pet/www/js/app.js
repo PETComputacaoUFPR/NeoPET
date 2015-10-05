@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var flarum = angular.module('flarum', ['ionic'])
+var flarum = angular.module('flarum', ['ionic', 'ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, TokenHandler, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
@@ -24,6 +24,21 @@ var flarum = angular.module('flarum', ['ionic'])
     }
   });
   
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    var requireLogin = toState.data.requireLogin;
+
+    if (requireLogin && TokenHandler.get() === 'none') {
+      if(toState.name !== 'login') {
+        event.preventDefault();
+        $state.go('login');
+      }
+    }
+  });
+  
+})
+
+.constant("CONFIG", {
+  "URL": "http://pet.inf.ufpr.br/forum/"
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -37,12 +52,18 @@ var flarum = angular.module('flarum', ['ionic'])
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      data: {
+        requireLogin: false
+      }
     })
     
     .state('tabs', {
       url: '/tabs',
-      templateUrl: 'templates/tabs.html'
+      templateUrl: 'templates/tabs.html',
+      data: {
+        requireLogin: true
+      }
     })
     ;
 
