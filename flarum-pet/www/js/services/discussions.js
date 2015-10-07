@@ -3,8 +3,8 @@ flarum.factory('Discussions', function($resource, CONFIG, TokenHandler) {
         update: {method: 'PUT'},
         all: {method: 'GET'}
     });
-    
+
     resource = TokenHandler.wrapActions(resource, ['query', 'update', 'save', 'get', 'remove', 'delete', 'all']);
-    
+
     return resource;
 });

@@ -23,7 +23,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
       StatusBar.styleDefault();
     }
   });
-  
+
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
 
@@ -34,7 +34,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
       }
     }
   });
-  
+
 })
 
 .constant("CONFIG", {
@@ -42,13 +42,12 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
+
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
@@ -57,7 +56,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
         requireLogin: false
       }
     })
-    
+
     .state('tabs', {
       url: '/tabs',
       templateUrl: 'templates/tabs.html',
@@ -66,7 +65,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
         requireLogin: true
       }
     })
-    
+
     .state('tabs.discussions', {
       url: '/discussions',
       views: {
@@ -85,7 +84,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
         }
       }
     })
-    
+
     .state('tabs.notifications', {
       url: '/notifications',
       views: {
@@ -95,7 +94,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
         }
       }
     })
-    
+
     .state('tabs.profile', {
       url: '/profile',
       views: {
@@ -107,8 +106,8 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  
+
   $urlRouterProvider.otherwise('/login');
-  
+
 
 });

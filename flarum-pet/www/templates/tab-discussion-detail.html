@@ -1,6 +1,11 @@
-<ion-content padding="true" class="has-header padding-top">
-    <div class="card">
-        OLÁ!
-        {{discussion}}
-    </div>
-</ion-content>
+<ion-view view-title="{{discussion.data.attributes.title}}">
+    <ion-content padding="true" class="has-header padding-top">
+        <div class="list card">
+            <div class="item item-text-wrap item-avatar" ng-repeat="comment in discussion.included" ng-if="comment.type=='posts' && comment.attributes.contentHtml">
+                <img src="{{getAvatar(comment.relationships.user)}}">
+                <h2>{{getUsername(comment.relationships.user)}}</h2>
+                <p ng-bind-html="comment.attributes.contentHtml"></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

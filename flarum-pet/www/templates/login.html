@@ -1,8 +1,8 @@
-<ion-view title="Login">
-    <ion-content padding="true" class="has-header">
+<ion-view title="Login" hide-nav-bar="true">
+    <ion-content padding="true">
         <img src="img/logo-velha.jpg" style="width: 100%; height: auto;">
+        <h1 class="center">FÓRUM</h1>
         <form ng-submit="login(user)">
-            <h1>FÓRUM</h1>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Username</span>
@@ -14,7 +14,7 @@
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-stable button-block ">Entrar</button>
+            <button class="button button-positive button-block ">Entrar</button>
         </form>
     </ion-content>
 </ion-view>
