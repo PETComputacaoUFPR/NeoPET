@@ -9,7 +9,7 @@
             <div class="item item-text-wrap item-avatar" ng-repeat="comment in discussion.included" ng-if="comment.type=='posts' && comment.attributes.contentHtml">
                 <img src="{{getAvatar(comment.relationships.user)}}">
                 <h2>{{getUsername(comment.relationships.user)}}</h2>
-                <p ng-bind-html="comment.attributes.contentHtml"></p>
+                <div ng-bind-html="comment.attributes.contentHtml"></div>
             </div>
         </div>
     </ion-content>
