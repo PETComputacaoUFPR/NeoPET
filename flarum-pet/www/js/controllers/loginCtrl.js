@@ -1,4 +1,4 @@
-flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $state, $ionicPopup) {
+flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $state, $ionicPopup, $rootScope) {
 
     $scope.login = function(user) {
 
@@ -12,6 +12,7 @@ flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $st
         $http.post(CONFIG.URL + 'api/token', payload)
         .success(function(data, status) {
             console.log(data);
+            $rootScope.userId = data.userId;
             TokenHandler.set(data.token);
             $state.go('tabs.discussions');
 
