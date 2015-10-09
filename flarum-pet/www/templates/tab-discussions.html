@@ -1,0 +1,10 @@
+<ion-view view-title="Discussões">
+    <ion-content padding="true" class="has-header padding-top">
+        <ion-list>
+            <ion-item ng-repeat="discu in discussions.data" class="item-icon-left" href="#/tabs/d/{{discu.id}}">
+                {{discu.attributes.title}}
+                <span class="badge" ng-class="isRead(discu)">{{discu.attributes.commentsCount}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

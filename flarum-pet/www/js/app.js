@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var flarum = angular.module('flarum', ['ionic'])
+var flarum = angular.module('flarum', ['ionic', 'ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, TokenHandler, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
@@ -23,32 +23,96 @@ var flarum = angular.module('flarum', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-  
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    var requireLogin = toState.data.requireLogin;
+
+    if (requireLogin && TokenHandler.get() === 'none') {
+      if(toState.name !== 'login') {
+        event.preventDefault();
+        $state.go('login');
+      }
+    }
+  });
+
+})
+
+.constant("CONFIG", {
+  "URL": "http://pet.inf.ufpr.br/forum/"
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
+
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      data: {
+        requireLogin: false
+      }
     })
-    
+
     .state('tabs', {
       url: '/tabs',
-      templateUrl: 'templates/tabs.html'
+      templateUrl: 'templates/tabs.html',
+      abstract: true,
+      data: {
+        requireLogin: true
+      }
     })
-    ;
+
+    .state('tabs.discussions', {
+      url: '/discussions',
+      views: {
+        'discussions-tab': {
+          templateUrl: 'templates/tab-discussions.html',
+          controller: 'DiscussionsCtrl'
+        }
+      }
+    })
+    .state('tabs.discussions-details', {
+        url: '/d/:id',
+        views: {
+            'discussions-tab': {
+                templateUrl: 'templates/tab-discussion-detail.html',
+                controller: 'DiscussionDetailsCtrl',
+                resolve: {
+                    discussion: function(Discussions, $stateParams) {
+                        return Discussions.get({id: $stateParams.id});
+                    }
+                }
+            }
+        }
+    })
+
+    .state('tabs.notifications', {
+      url: '/notifications',
+      views: {
+        'notifications-tab': {
+          templateUrl: 'templates/tab-notifications.html',
+          controller: 'NotificationsCtrl'
+        }
+      }
+    })
+
+    .state('tabs.profile', {
+      url: '/profile',
+      views: {
+        'profile-tab': {
+          templateUrl: 'templates/tab-profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
-  
+
   $urlRouterProvider.otherwise('/login');
-  
+
 
 });
