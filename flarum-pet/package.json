@@ -1,7 +1,7 @@
 {
-  "name": "flarum-pet",
+  "name": "neopet",
   "version": "1.0.0",
-  "description": "flarum-pet: An Ionic project",
+  "description": "neopet: fórum do PET computação",
   "dependencies": {
     "angular-resource": "^1.4.7",
     "gulp": "^3.5.6",

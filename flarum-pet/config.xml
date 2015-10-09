@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ufpr.pet.inf.flarum" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>flarum-pet</name>
+    <name>NEOPET</name>
     <description>
-        App parao Fórum do PET
+        App para o Fórum do PET
     </description>
     <author email="pet@inf.ufpr.br" href="http://pet.inf.ufpr.br">
-      Pet Computação UFPR
+      PET Computação UFPR
     </author>
     <content src="index.html" />
     <access origin="*" />
