@@ -76,13 +76,18 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
       }
     })
     .state('tabs.discussions-details', {
-      url: '/d/:id',
-      views: {
-        'discussions-tab': {
-          templateUrl: 'templates/tab-discussion-detail.html',
-          controller: 'DiscussionDetailsCtrl'
+        url: '/d/:id',
+        views: {
+            'discussions-tab': {
+                templateUrl: 'templates/tab-discussion-detail.html',
+                controller: 'DiscussionDetailsCtrl',
+                resolve: {
+                    discussion: function(Discussions, $stateParams) {
+                        return Discussions.get({id: $stateParams.id});
+                    }
+                }
+            }
         }
-      }
     })
 
     .state('tabs.notifications', {
