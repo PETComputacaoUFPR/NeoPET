@@ -1,20 +1,20 @@
 <ion-view title="Login" hide-nav-bar="true">
     <ion-content padding="true">
-        <img src="img/logo-velha.jpg" style="width: 100%; height: auto;">
-        <h1 class="center">FÓRUM</h1>
+        <img src="img/app-negative.png" style="width: 100%; height: auto;">
+        <h1 class="center" style="color: #55cb7c">NeoPET</h1>
         <form ng-submit="login(user)">
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Username</span>
+                    <span class="input-label">Usuário</span>
                     <input type="text" placeholder="" ng-model="user.username">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Password</span>
+                    <span class="input-label">Senha</span>
                     <input type="password" placeholder="" ng-model="user.password">
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-positive button-block ">Entrar</button>
+            <button class="button button-balanced button-block ">Entrar</button>
         </form>
     </ion-content>
 </ion-view>

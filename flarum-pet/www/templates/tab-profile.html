@@ -1,5 +1,16 @@
-<ion-view>
+<ion-view view-title="Perfil">
     <ion-content padding="true" class="has-header">
-        <h1>Olá!</h1>
+        <div class="card list">
+            <div class="item item-avatar">
+                <img src="http://pet.inf.ufpr.br{{user.data.attributes.avatarUrl}}" ng-if="user.data.attributes.avatarUrl">
+                <h2>{{user.data.attributes.username}}</h2>
+                <p>{{user.data.attributes.bio}}</p>
+            </div>
+            <div class="item tabs tabs-secondary">
+                <div ng-repeat="group in user.included" ng-if="group.type === 'groups'">
+                    <span style="color: {{group.attributes.color}}">{{group.attributes.nameSingular}}</span>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
