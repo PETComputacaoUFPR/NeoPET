@@ -15,7 +15,6 @@ flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $st
             $rootScope.userId = data.userId;
             TokenHandler.set(data.token);
             $state.go('tabs.discussions');
-
         })
         .error(function(data, status) {
             console.log(data);

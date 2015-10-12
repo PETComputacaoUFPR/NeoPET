@@ -1,15 +1,16 @@
-flarum.factory('TokenHandler', function($http) {
+flarum.factory('TokenHandler', function($http, localStorageService) {
   var tokenHandler = {};
-  var token = "none";
+  var token = null;
 
   tokenHandler.set = function( newToken ) {
     token = newToken;
+    localStorageService.set('authorizationToken', token);
     $http.defaults.headers.common.Authorization = 'Token ' + token ;
     $http.defaults.headers.get = {'Authorization': 'Token ' + token };
   };
 
   tokenHandler.get = function() {
-    return token;
+    return token || localStorageService.get('authorizationToken');
   };
 
   // wrap given actions of a resource to send auth token with every
