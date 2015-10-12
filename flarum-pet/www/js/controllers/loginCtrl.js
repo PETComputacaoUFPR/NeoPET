@@ -1,5 +1,12 @@
 flarum.controller('LoginCtrl', function($scope, TokenHandler, $http, CONFIG, $state, $ionicPopup, $rootScope) {
 
+    // If we have a token, we don't log in
+    // (and assume the token is valid for now)
+    if(TokenHandler.get()) {
+        TokenHandler.set(TokenHandler.get())
+        $state.go('tabs.discussions');
+    }
+
     $scope.login = function(user) {
 
         var payload = {
