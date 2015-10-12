@@ -1,11 +1,12 @@
-<ion-view view-title="{{discussion.data.attributes.title}}">
-    <ion-nav-buttons side="secondary">
-        <a href="{{getUrl()}}" class="button button-clear" target="_blank">
-            Abrir no Browser<i class="icon ion-forward"></i>
-        </a>
-    </ion-nav-buttons>
+<ion-view>
     <ion-content padding="true" class="has-header padding-top">
         <div class="list card">
+            <div class="item item-divider item-icon-right">
+                {{discussion.data.attributes.title}}
+                <a href="{{getUrl()}}" target="_blank" style="color:black;">
+                    <i class="icon ion-forward"></i>
+                </a>
+            </div>
             <div class="item item-text-wrap item-avatar" ng-repeat="comment in discussion.included" ng-if="comment.type=='posts' && comment.attributes.contentHtml">
                 <img src="{{getAvatar(comment.relationships.user)}}">
                 <h2>{{getUsername(comment.relationships.user)}}</h2>
