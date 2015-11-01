@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var flarum = angular.module('flarum', ['ionic', 'ngResource'])
+var flarum = angular.module('flarum', ['ionic', 'ngResource','ngCordova'])
 
 .run(function($ionicPlatform, $rootScope, TokenHandler, $state) {
   $ionicPlatform.ready(function() {
@@ -13,6 +13,9 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource'])
     // least on iOS. It's a dead giveaway that an app is using a Web View. However, it's sometimes
     // useful especially with forms, though we would prefer giving the user a little more room
     // to interact with the app.
+      
+
+  
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
