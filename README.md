@@ -1,5 +1,7 @@
 # ![NeoPET logo](logo-gimp.png) NeoPET
 
+[![Join the chat at https://gitter.im/PETComputacaoUFPR/neopet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/PETComputacaoUFPR/neopet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An Ionic app made for PET's internal forum [Flarum](http://flarum.org)
 
 ## Notice
