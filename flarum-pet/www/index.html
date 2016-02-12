@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <title></title>
 
     <style>
@@ -14,8 +15,10 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+    <script src="cordova.js"></script> 
     <script src="lib/angular-resource/angular-resource.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/tokenHandler.js"></script>
@@ -25,7 +28,6 @@
     <script src="js/controllers/discussionsCtrl.js"></script>
     <script src="js/controllers/discussionDetailsCtrl.js"></script>
     <script src="js/controllers/profileCtrl.js"></script>
-
     <link href="css/ionic.app.css" rel="stylesheet">
 
 

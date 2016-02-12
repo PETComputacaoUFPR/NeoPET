@@ -13,8 +13,46 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource','ngCordova'])
     // least on iOS. It's a dead giveaway that an app is using a Web View. However, it's sometimes
     // useful especially with forms, though we would prefer giving the user a little more room
     // to interact with the app.
-      
+    
+    PushNotification.hasPermission(function(data) {
+      if (data.isEnabled) {
+        console.log('isEnabled');
+      }else{
+        console.log('isNotEnabled');
+      }
+    });
+      var push = PushNotification.init({
+        android: {
+            senderID: ""
+        },
+        ios: {
+            alert: "true",
+            badge: "true",
+            sound: "true"
+        },
+        windows: {}
+    });
 
+
+    push.on('registration', function(data) {
+        console.log("registration: "+ data.registrationId);
+        // data.registrationId
+    });
+
+   push.on('notification', function(data) {
+      console.log("notification:");
+      console.log(data.message);
+      console.log(data.title);
+      console.log(data.count);
+      console.log(data.sound);
+      console.log(data.image);
+      console.log(data.additionalData);
+    });
+
+push.on('error', function(e) {
+   console.log(e.message);
+    // e.message
+});
   
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
