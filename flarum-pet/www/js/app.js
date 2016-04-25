@@ -23,7 +23,7 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource','ngCordova'])
     });
       var push = PushNotification.init({
         android: {
-            senderID: ""
+            senderID:
         },
         ios: {
             alert: "true",
@@ -36,8 +36,10 @@ var flarum = angular.module('flarum', ['ionic', 'ngResource','ngCordova'])
 
     push.on('registration', function(data) {
         console.log("registration: "+ data.registrationId);
+        $rootScope.gcmToken = data.registrationId;
+
         // data.registrationId
-    });
+      });
 
    push.on('notification', function(data) {
       console.log("notification:");
